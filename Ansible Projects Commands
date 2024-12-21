@@ -1,0 +1,77 @@
+  435  cd ansible-for-beginners/
+  453  cd ansible-contorller-vm/
+  458  vagrant up
+  459  sudo vi Vagrantfile
+  462  cd vagrant/
+  481  mkdir examples
+  482  pwd
+  483  cd examples/
+  487  cd examples/
+  489  git clone https://github.com/linuxdirection/ansible-for-beginners.git
+  491  cd vagrant/examples/ansible-for-beginners/labs/ansible-contorller-vm/
+  493  cp Vagrantfile /home/oladele/vagrant/examples/
+  499  pip --version
+  500  ansible --version
+  501  pip --version
+  502  sudo apt install python3-pip -y
+  503  pip install virtualenv
+  504  sudo pip install virtualenv
+  505  mkdir ansible_virtualenv
+  506  cd ansible_virtualenv/
+  507  python3 -m virtualenv ansible_env
+  508  ls
+  509  source ansible_env/bin/activate
+  510  pip install ansible
+  511  ansible --version
+  512  deactivate
+  513  cd
+  514  source ansible_env/bin/activate
+  515  python3 -m virtualenv ansible_env
+  516  ls
+  517  cd ansible_virtualenv/
+  518  ls
+  519  source ansible_env/bin/activate
+  520  deactivate
+  521  cd
+  526  sudo hostnamectl set-hostname ansible
+  527  cd
+  528  ls
+  529  mkdir inventory
+  530  cd inventory/
+  531  touch inventory.ini inventory.yml
+  532  ls -l
+  533  nano inventory.ini
+  534  nano inventory.yml
+  535  ansible-inventory -i inventory.ini --list
+  536  ansible-inventory -i inventory.yml --list
+  537  ansible -i inventory.ini all -m ping
+  538  cd
+  539  ansible localhost -m ping
+  540  ping 192.168.244.134
+  541  ping 192.168.244.135
+  542  pip --version
+
+  600  ansible --version
+  601  ssh-keygen
+  602  cat /home/oladele/.ssh/id_rsa.pub
+  603  cd /home/oladele/.ssh/
+  607  ls -a
+  608  history
+oladele@ansible:~$
+
+oladele@ansible-control-host:~/inventory$ yamllint inventory.ini # checking YAML syntax and structure
+Command 'yamllint' not found, but can be installed with:         # if not installed
+sudo apt install yamllint -y                                     # then install
+
+Creating SSH-KEYGEN from the ANSIBLE CONTROL HOST and then COPY the PUBLIC KEY into all our MANAGED HOSTS for easy and passwordless access:
+
+# ssh-copy-id -i ~/.ssh/id_rsa.pub  adele@192.168.244.134:~/.ssh/authorized_keys
+# ssh-copy-id -i ~/.ssh/id_rsa.pub  adele@192.168.244.135:~/.ssh/authorized_keys
+
+At MANAGED HOSTS create .ssh directory with 
+# [adele@rockyprodsvr01~]$ mkdir /home/adele/.ssh
+
+Then use the following CMD to copy the PUBLIC KEY from the CONTROL HOST to the MANAGED HOSTS (Create a cripts to automate this with many hosts)
+# scp -r ~/.ssh/id_rsa.pub  adele@192.168.244.134:~/.ssh/authorized_keys
+# scp -r ~/.ssh/id_rsa.pub  adele@192.168.244.135:~/.ssh/authorized_keys
+

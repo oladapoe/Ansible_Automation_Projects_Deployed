@@ -1,0 +1,31 @@
+---
+all:
+  children:
+    webservers:
+      hosts:
+        webserver1.example.com:
+        webserver2.example.com:
+        dele@webserver1.example.com:
+        dele@webserver2.example.com:
+      vars:
+        http_port: 80
+        server_mode: 'production'
+        ansible_python_interpreter: /usr/bin/python3
+    dbservers:
+      hosts:
+        dbserver1.example.com:
+        dbserver2.example.com:
+        adele@dbserver1.example.com:
+        adele@dbserver2.example.com:
+      vars:
+        http_port: 80
+        server_mode: 'production'
+    prod_dev_servers:
+      hosts:
+        rockyprodsvr01.example.com:
+        rockydevsvr01.example.com:
+        adele@rockyprodsvr01.example.com:
+        adele@rockydevsvr01.example.com:
+      vars:
+        http_port: 80
+        server_mode: 'production'

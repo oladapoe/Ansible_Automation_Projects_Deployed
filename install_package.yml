@@ -1,0 +1,14 @@
+---
+- hosts: webservers
+  become: true
+  vars:
+    - ansible_ssh_private_key_file: ~/.ssh/id_rsa
+  tasks:
+    - name: "Install nginx"
+      yum:
+        name: nginx
+        state: latest
+    - name: " Install httpd"
+      yum:
+        name: httpd
+        state: latest
